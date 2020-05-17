@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import Item from './Item.jsx';
-import JSON from 'JSON';
 
 export default class table extends Component {
     constructor(props) {
@@ -8,8 +7,8 @@ export default class table extends Component {
         this.state = {
             records: this.props.records
         }
-        console.log("The props:" + JSON.stringify(props));        
-        console.log("In the table constructor: " + JSON.stringify(this.state.records));            
+        //console.log("The props:" + JSON.stringify(props));        
+        //console.log("In the table constructor: " + JSON.stringify(this.state.records));            
     }
 
     render() {
@@ -24,6 +23,7 @@ export default class table extends Component {
                     <th>TYPE3</th>
                     <th>GRASP</th>
                     <th>LAST</th>
+                    <th>Opertion</th>
                 </tr>
             </thead>
             <tbody>

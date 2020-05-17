@@ -4,23 +4,24 @@ import config from '../config/dbconfig.js';
 const axios = require('axios');
 
 export default class AddForm extends Component{
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+        //console.log(this.props.editState);        
         this.state = {
-            id:0,
-            name:" ",
-            diff:" ",
-            type1:" ",
-            type2:" ",
-            type3:" ",
-            grasp:" ",
-            last:" ",
+            id: this.props.buttonLabel === 'Add' ? '' : this.props.editState.id,
+            name:this.props.buttonLabel === 'Add' ? '' : this.props.editState.name,
+            diff:this.props.buttonLabel === 'Add' ? '' : this.props.editState.diff,
+            type1:this.props.buttonLabel === 'Add' ? '' : this.props.editState.type1,
+            type2:this.props.buttonLabel === 'Add' ? '' : this.props.editState.type2,
+            type3:this.props.buttonLabel === 'Add' ? '' : this.props.editState.type3,
+            grasp:this.props.buttonLabel === 'Add' ? '' : this.props.editState.grasp,
+            last:this.props.buttonLabel === 'Add' ? '' : this.props.editState.last,
         }
     }
 
     options = {
         method:'post',
-        url:config.ip + '/doAdd',
+        url: config.ip + (this.props.buttonLabel === 'Add' ? '/doAdd' : '/doEdit'),
         data:{
             item:this.state
         }    
@@ -30,25 +31,24 @@ export default class AddForm extends Component{
         this.setState({[e.target.name]:e.target.value})
     }
 
-    submitFormAdd = async e =>  {
+    submit = async e =>  {
         e.preventDefault();
         let newItem = {id:this.state.id, name:this.state.name, diff:this.state.diff,
             type1:this.state.type1, type2:this.state.type2, type3:this.state.type3,
             grasp:this.state.grasp, last:this.state.last
         }
         this.options.data = newItem;
-
-        let ret = await axios(this.options);                                        
+        await axios(this.options);                                        
         this.props.toggle();
         window.location.href = '/';
     }
 
     render() {
         return (            
-            <Form onSubmit={this.submitFormAdd}>
+            <Form onSubmit={this.submit}>
                 <FormGroup>
                     <Label>Problem ID</Label>
-                    <Input type='text' name='id' onChange={this.onChange} value={this.state.id}/>
+                    <Input type='text' name='id' onChange={this.onChange} value={this.state.id} readOnly={this.props.buttonLabel === 'Edit'}/>
                 </FormGroup>
                 <FormGroup>
                     <Label>Name</Label>
@@ -78,7 +78,7 @@ export default class AddForm extends Component{
                     <Label>LastAccessed:</Label>
                     <Input type='date' name='last' onChange={this.onChange} value={this.state.last}/>
                 </FormGroup>
-                <Button>Submit</Button>
+                <Button color='success'>Submit</Button>
             </Form>
         )
     }
