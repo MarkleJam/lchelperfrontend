@@ -20,6 +20,7 @@ class Home extends Component {
     }
   
     async componentDidMount() {
+      this.options.url += '/item';
       let ret = await axios(this.options);
       this.setState({items:ret});    
     }
