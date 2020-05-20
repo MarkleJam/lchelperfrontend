@@ -21,7 +21,7 @@ export default class AddForm extends Component{
 
     options = {
         method:'post',
-        url: config.ip + (this.props.buttonLabel === 'Add' ? '/doAdd' : '/doEdit'),
+        url: config.ip + '/item' + (this.props.buttonLabel === 'Add' ? '/doAdd' : '/doEdit'),
         data:{
             item:this.state
         }    
