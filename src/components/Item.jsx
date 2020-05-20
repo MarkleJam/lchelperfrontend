@@ -17,14 +17,14 @@ export default class Item extends Component{
             type2: this.props.type2,
             type3: this.props.type3,
             grasp: this.props.grasp,
-            last: (this.props.lastaccessed).substring(0,10),
+            //last: (this.props.lastaccessed).substring(0,10),
             modal: false,
         }
     }
 
     options = {
-        method:'post',
-        url: config.ip  + '/item' + '/doDelete',
+        method:'delete',
+        url: config.ip  + '/item' + '/' + this.props.id,
         data:{
             id:this.props.id
         }
@@ -55,7 +55,7 @@ export default class Item extends Component{
             <td>{this.state.type2}</td>
             <td>{this.state.type3}</td>
             <td>{this.state.grasp}</td>
-            <td>{this.state.last}</td>
+            {/* <td>{this.state.last}</td> */}
             <td>
                 <Row>
                     <HistoryModel id={this.state.id}></HistoryModel>

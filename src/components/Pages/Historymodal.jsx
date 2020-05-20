@@ -26,8 +26,8 @@ export default class HistoryModal extends Component {
 
     async componentDidMount() {
         options.url = (config.ip + '/history/' + this.state.id);
-        let ret = await axios(options);
-        this.setState({history:ret.data});
+        // let ret = await axios(options);
+        // this.setState({history:ret.data});
     }
 
     render() {

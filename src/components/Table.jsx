@@ -22,7 +22,7 @@ export default class table extends Component {
                     <th>TYPE2</th>
                     <th>TYPE3</th>
                     <th>GRASP</th>
-                    <th>LAST</th>
+                    {/* <th>LAST</th> */}
                     <th>Opertion</th>
                 </tr>
             </thead>

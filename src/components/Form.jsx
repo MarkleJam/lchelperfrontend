@@ -15,12 +15,12 @@ export default class AddForm extends Component{
             type2:this.props.buttonLabel === 'Add' ? '' : this.props.editState.type2,
             type3:this.props.buttonLabel === 'Add' ? '' : this.props.editState.type3,
             grasp:this.props.buttonLabel === 'Add' ? '' : this.props.editState.grasp,
-            last:this.props.buttonLabel === 'Add' ? '' : this.props.editState.last,
+            //last:this.props.buttonLabel === 'Add' ? '' : this.props.editState.last,
         }
     }
 
     options = {
-        method:'post',
+        method:this.props.buttonLabel === 'Add' ? 'post' : 'put',
         url: config.ip + '/item' + (this.props.buttonLabel === 'Add' ? '/doAdd' : '/doEdit'),
         data:{
             item:this.state
@@ -35,7 +35,8 @@ export default class AddForm extends Component{
         e.preventDefault();
         let newItem = {id:this.state.id, name:this.state.name, diff:this.state.diff,
             type1:this.state.type1, type2:this.state.type2, type3:this.state.type3,
-            grasp:this.state.grasp, last:this.state.last
+            grasp:this.state.grasp
+            //, last:this.state.last
         }
         this.options.data = newItem;
         await axios(this.options);                                        
@@ -74,10 +75,10 @@ export default class AddForm extends Component{
                     <Label>Grasp:</Label>
                     <Input type='text' name='grasp' onChange={this.onChange} value={this.state.grasp}/>
                 </FormGroup>
-                <FormGroup>
+                {/* <FormGroup>
                     <Label>LastAccessed:</Label>
                     <Input type='date' name='last' onChange={this.onChange} value={this.state.last}/>
-                </FormGroup>
+                </FormGroup> */}
                 <Button color='success'>Submit</Button>
             </Form>
         )
