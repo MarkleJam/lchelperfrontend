@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, Row, Modal, ModalHeader, ModalBody } from 'reactstrap';
 import ModelForm from './Modal.jsx'
 import config from '../config/dbconfig.js';
+import HistoryModel from './Pages/Historymodal.jsx';
 
 const axios = require('axios');
 
@@ -23,7 +24,7 @@ export default class Item extends Component{
 
     options = {
         method:'post',
-        url: config.ip + '/doDelete',
+        url: config.ip  + '/item' + '/doDelete',
         data:{
             id:this.props.id
         }
@@ -57,6 +58,7 @@ export default class Item extends Component{
             <td>{this.state.last}</td>
             <td>
                 <Row>
+                    <HistoryModel id={this.state.id}></HistoryModel>
                     <ModelForm buttonLabel='Edit' editState={this.state}></ModelForm>
                     <div>
                         {deleteButton}
