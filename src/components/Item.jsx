@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Button, Row, Modal, ModalHeader, ModalBody } from 'reactstrap';
+import {Row, Button} from 'reactstrap';
 import ModelForm from './Modal.jsx'
 import config from '../config/dbconfig.js';
 import HistoryModel from './Pages/Historymodal.jsx';
-
+import DeleteModel from './Pages/deleteModal.jsx';
 const axios = require('axios');
 
 export default class Item extends Component{
@@ -22,57 +22,25 @@ export default class Item extends Component{
         }
     }
 
-    options = {
-        method:'delete',
-        url: config.ip  + '/item' + '/' + this.props.id,
-        data:{
-            id:this.props.id
-        }
-    }
-
-    toggle = () => {
-        console.log("In the toggle: id is: " + this.state.id);        
-        this.setState(prevState => ({
-            modal: !prevState.modal
-        }))
-    }
-
-    submitDelete = async (e) => {
-        e.preventDefault();                
-        await axios(this.options);
-        this.toggle();
-        window.location.href = '/';                                        
-    }
-
-    render() {
-        let clsButton = <Button onClick={this.toggle}>&times;</Button>
-        let deleteButton = <Button color='danger' onClick={this.toggle} size='sm' >Delete</Button>;
-        return( <tr>
+    render() {      
+        let historyBtn = <Button color='success' size='sm'> Historys </Button>  
+        return( 
+        <tr>
             <td>{this.state.id}</td>
             <td>{this.state.name}</td>
             <td>{this.state.diff}</td>
             <td>{this.state.type1}</td>
             <td>{this.state.type2}</td>
             <td>{this.state.type3}</td>
-            <td>{this.state.grasp}</td>
-            {/* <td>{this.state.last}</td> */}
+            <td>{this.state.grasp}</td>           
             <td>
                 <Row>
                     <HistoryModel id={this.state.id}></HistoryModel>
                     <ModelForm buttonLabel='Edit' editState={this.state}></ModelForm>
-                    <div>
-                        {deleteButton}
-                        <Modal isOpen={this.state.modal} toggle={this.toggle}>
-                        <ModalHeader close = {clsButton}>Delete Confirmation</ModalHeader>
-                            <ModalBody>
-                                <div>Are you sure to delete the item?</div>
-                                <br/>
-                                <Button color='danger' onClick={this.submitDelete}>Delete the item</Button>
-                            </ModalBody>
-                        </Modal>
-                    </div>
+                    <DeleteModel id={this.state.id}></DeleteModel>                
                 </Row>
             </td>
+            <td>{historyBtn}</td>
         </tr>)
     }    
 }

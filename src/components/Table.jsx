@@ -24,6 +24,7 @@ export default class table extends Component {
                     <th>GRASP</th>
                     {/* <th>LAST</th> */}
                     <th>Opertion</th>
+                    <th>History</th>
                 </tr>
             </thead>
             <tbody>
