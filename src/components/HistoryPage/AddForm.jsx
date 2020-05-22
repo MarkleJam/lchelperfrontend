@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Button, Form, FormGroup, Label, Input, Card, CardBody, Col} from 'reactstrap';
 import config from '../../config/dbconfig.js';
-import HistoryItem from './HistoryItem.jsx';
 
 const axios = require('axios');
 
@@ -22,6 +21,9 @@ export default class HistoryAddForm extends Component {
     
     submitAdd = async (e) => {
         e.preventDefault();
+        if(!this.state.date) {
+            return;
+        }
         let newHistory = {problemid:this.state.problemid, date:this.state.date, comment:this.state.comment};
         this.postOptions.data = newHistory;
         await axios(this.postOptions);                                                
@@ -40,11 +42,11 @@ export default class HistoryAddForm extends Component {
                 <Form onSubmit={this.submitAdd}>                    
                     <FormGroup>
                         <Label>Date</Label>                     
-                        <Input type='date' name='date' onChange={this.onChange} value={this.state.last}/>                
+                        <Input type='date' name='date' onChange={this.onChange}/>                
                     </FormGroup>
                     <FormGroup>
                         <Label>Comment</Label>                     
-                        <Input type='textarea' name='comment' onChange={this.onChange} value={this.state.last}/>                
+                        <Input type='textarea' name='comment' onChange={this.onChange}/>                
                     </FormGroup>
                     <Button color='success' >Add New</Button>
                 </Form>
