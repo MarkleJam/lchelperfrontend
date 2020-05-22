@@ -22,8 +22,12 @@ export default class Item extends Component{
         }
     }
 
+    historyBtnOnClick = () => {
+        window.location.href="/history/" + this.state.id;
+    }
+
     render() {      
-        let historyBtn = <Button color='success' size='sm'> Historys </Button>  
+        let historyBtn = <Button color='success' size='sm' onClick={this.historyBtnOnClick}> Historys </Button>  
         return( 
         <tr>
             <td>{this.state.id}</td>
@@ -37,7 +41,7 @@ export default class Item extends Component{
                 <Row>
                     <HistoryModel id={this.state.id}></HistoryModel>
                     <ModelForm buttonLabel='Edit' editState={this.state}></ModelForm>
-                    <DeleteModel id={this.state.id}></DeleteModel>                
+                    <DeleteModel id={this.state.id} table="item"></DeleteModel>                
                 </Row>
             </td>
             <td>{historyBtn}</td>
