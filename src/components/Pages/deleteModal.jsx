@@ -14,7 +14,7 @@ export default class DeleteModal extends Component {
 
     options = {
         method:'delete',
-        url: config.ip  + '/item' + '/' + this.props.id,
+        url: config.ip  + '/' + this.props.table + '/' + this.props.id,
         data:{
             id:this.props.id
         }
@@ -30,7 +30,12 @@ export default class DeleteModal extends Component {
         e.preventDefault();                
         await axios(this.options);
         this.toggle();
-        window.location.href = '/';                                        
+        // if(this.props.table === 'item') {
+        //     window.location.href = '/';                                        
+        // } else {
+
+        // }  
+        window.location.reload();      
     }
 
     render(){
