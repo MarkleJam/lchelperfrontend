@@ -75,10 +75,6 @@ export default class AddForm extends Component{
                     <Label>Grasp:</Label>
                     <Input type='text' name='grasp' onChange={this.onChange} value={this.state.grasp}/>
                 </FormGroup>
-                {/* <FormGroup>
-                    <Label>LastAccessed:</Label>
-                    <Input type='date' name='last' onChange={this.onChange} value={this.state.last}/>
-                </FormGroup> */}
                 <Button color='success'>Submit</Button>
             </Form>
         )
