@@ -30,6 +30,10 @@ export default class History extends Component {
         //console.log(this.state.history)
       }
 
+      goHome = (e) => {
+        window.location.href = '/';
+      }
+
     render() {
         if(this.state.history == null) return null;
         return <div>
@@ -40,6 +44,7 @@ export default class History extends Component {
             <br/>
             <br/>
             <AddForm id={this.state.problemid}></AddForm>
+            <Button color='success' onClick={this.goHome}>Home</Button>
         </div>
     }
 }
