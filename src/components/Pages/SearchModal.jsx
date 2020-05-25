@@ -89,15 +89,15 @@ export default class SearchModal extends Component {
                             <Input type='text' name='diff' onChange={this.onChange} value={this.state.diff} placeholder='easy, medium, hard'/>
                         </FormGroup>
                         <FormGroup>
-                            <Label>Type1:</Label>
+                            <Label>Type Keyword 1:</Label>
                             <Input type='text' name='type1' onChange={this.onChange} value={this.state.type1}/>
                         </FormGroup>
                         <FormGroup>
-                            <Label>Type2:</Label>
+                            <Label>Type Keyword 2</Label>
                             <Input type='text' name='type2' onChange={this.onChange} value={this.state.type2}/>
                         </FormGroup>
                         <FormGroup>
-                            <Label>Type3:</Label>
+                            <Label>Type Keyword 3</Label>
                             <Input type='text' name='type3' onChange={this.onChange} value={this.state.type3}/>
                         </FormGroup>
                         <FormGroup>
