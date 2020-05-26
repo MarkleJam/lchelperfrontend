@@ -3,6 +3,8 @@ import config from '../../config/dbconfig.js'
 import Table from '../Table.jsx';
 import ModelForm from '../Modal.jsx'
 import SearchModal from './SearchModal.jsx';
+import ReviewModal from '../ReviewPage/ReviewModal.jsx'
+
 import {Container} from 'reactstrap';
 
 const axios = require('axios');
@@ -45,6 +47,7 @@ class Home extends Component {
               <div className="row">
                   <ModelForm buttonLabel="Add">Hello!</ModelForm>
                   <SearchModal></SearchModal>
+                  <ReviewModal></ReviewModal>
               </div>     
             </Container>
           );
