@@ -25,11 +25,12 @@ export default class table extends Component {
                     {/* <th>LAST</th> */}
                     <th>Opertion</th>
                     <th>History</th>
+                    {this.props.review && <th>Last Review</th>}
                 </tr>
             </thead>
             <tbody>
                 {this.state.records.map(item => {
-                    return <Item {...item} key = {item.id}> </Item>
+                    return <Item {...item} key = {item.id} review = {this.props.review}> </Item>
                 })}
             </tbody>
         </table>
