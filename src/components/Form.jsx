@@ -15,6 +15,7 @@ export default class AddForm extends Component{
             type2:this.props.buttonLabel === 'Add' ? '' : this.props.editState.type2,
             type3:this.props.buttonLabel === 'Add' ? '' : this.props.editState.type3,
             grasp:this.props.buttonLabel === 'Add' ? '' : this.props.editState.grasp,
+            createAt:this.props.buttonLabel === 'Add' ? '' : this.props.editState.createAt,
             //last:this.props.buttonLabel === 'Add' ? '' : this.props.editState.last,
         }
     }
@@ -25,23 +26,41 @@ export default class AddForm extends Component{
         data:{
             item:this.state
         }    
-      }         
+      }
 
-    onChange = e => {
-        this.setState({[e.target.name]:e.target.value})
+    AddInitHistoryOptions = {
+        method: 'post',
+        url: config.ip + '/history' + '/doAdd'
+    }
+
+    addHistory = async() => {
+        let newHistory = {problemid:this.state.id, date:this.state.createAt, comment:"Created on this day"};
+        this.AddInitHistoryOptions.data = newHistory;
+        await axios(this.AddInitHistoryOptions);
     }
 
     submit = async e =>  {
         e.preventDefault();
         let newItem = {id:this.state.id, name:this.state.name, diff:this.state.diff,
             type1:this.state.type1, type2:this.state.type2, type3:this.state.type3,
-            grasp:this.state.grasp
-            //, last:this.state.last
+            grasp:this.state.grasp,
+            createAt: this.state.createAt
         }
+
         this.options.data = newItem;
-        await axios(this.options);                                        
+        await axios(this.options);
+
+        //Only add first history when creating an item.
+        if(this.props.buttonLabel === "Add") {
+            await this.addHistory();
+        }
+
         this.props.toggle();
         window.location.href = '/';
+    }
+
+    onChange = e => {
+        this.setState({[e.target.name]:e.target.value})
     }
 
     render() {
@@ -74,6 +93,10 @@ export default class AddForm extends Component{
                 <FormGroup>
                     <Label>Grasp:</Label>
                     <Input type='text' name='grasp' onChange={this.onChange} value={this.state.grasp}/>
+                </FormGroup>
+                <FormGroup>
+                    <Label>Create Date(Used to create first history)</Label>
+                    <Input type='date' name='createAt' onChange={this.onChange} value={this.state.createAt} readOnly={this.props.buttonLabel === 'Edit'}/>
                 </FormGroup>
                 <Button color='success'>Submit</Button>
             </Form>
