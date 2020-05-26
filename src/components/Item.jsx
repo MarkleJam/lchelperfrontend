@@ -17,8 +17,8 @@ export default class Item extends Component{
             type2: this.props.type2,
             type3: this.props.type3,
             grasp: this.props.grasp,
-            //last: (this.props.lastaccessed).substring(0,10),
-            modal: false,
+            createAt: this.props.createAt,
+            last: this.props.md
         }
     }
 
@@ -45,6 +45,7 @@ export default class Item extends Component{
                 </Row>
             </td>
             <td>{historyBtn}</td>
+            {this.props.review && <td>{this.state.last}</td>}
         </tr>)
     }    
 }
