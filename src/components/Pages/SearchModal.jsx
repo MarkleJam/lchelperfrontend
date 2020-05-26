@@ -47,15 +47,7 @@ export default class SearchModal extends Component {
 
     submit = async e =>  {
         e.preventDefault();
-        let newItem = {id:this.state.id, name:this.state.name, diff:this.state.diff,
-            type1:this.state.type1, type2:this.state.type2, type3:this.state.type3,
-            grasp:this.state.grasp
-            //, last:this.state.last
-        }        
         this.toggle();
-        this.state.redirect = true;
-        console.log("I am in the submit function of search modal");
-        
         window.location.href = '/item/search'
          + '?id=' + [this.state.id]
          + '&name=' + [this.state.name]
