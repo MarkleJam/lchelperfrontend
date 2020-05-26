@@ -8,7 +8,8 @@ type1 VARCHAR(255),
 type2 VARCHAR(255),
 type3 VARCHAR(255),
 grasp VARCHAR(255),
-lastaccessed date);
+createAt date
+);
 
 select * from item;
 
